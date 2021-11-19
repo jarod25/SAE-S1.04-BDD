@@ -39,7 +39,7 @@ CREATE TABLE Marque(
 
 CREATE TABLE Voiture(
    Id_Voiture INT AUTO_INCREMENT,
-   NombrePaces INT,
+   NombrePlaces INT,
    Id_Marque INT NOT NULL,
    PRIMARY KEY(Id_Voiture),
    FOREIGN KEY(Id_Marque) REFERENCES Marque(Id_Marque)
@@ -114,7 +114,7 @@ INSERT INTO Trajet(Id_Trajet, HeureDepart, HeureArrivee) VALUES
 (6, '13:20', '14:20'),
 (7, '14:40', '15:00'),
 (8, '18:00', '18:45'),
-(9, '13:55', '15:05');
+(9, '13:55', '14:05');
 
 INSERT INTO CouleurVoiture(Id_Couleur, LibelleCouleur) VALUES
 (1, 'Blanche'),
@@ -122,10 +122,10 @@ INSERT INTO CouleurVoiture(Id_Couleur, LibelleCouleur) VALUES
 (3, 'Bleu'),
 (4, 'Rouge'),
 (5, 'Noire'),
-(6, 'Blanche'),
+(6, 'Kaki'),
 (7, 'Jaune moutarde'),
-(8, 'Grise'),
-(9, 'Blanche');
+(8, 'Pastèle'),
+(9, 'Rose-Rouge');
 
 INSERT INTO Marque(Id_Marque, LibelleMarque) VALUES
 (1, 'Fiat Multiplat'),
@@ -138,7 +138,7 @@ INSERT INTO Marque(Id_Marque, LibelleMarque) VALUES
 (8, 'BMW Classe A'),
 (9, 'Peugeot 5008');
 
-INSERT INTO Voiture(Id_Voiture, NombrePaces, Id_Marque) VALUES
+INSERT INTO Voiture(Id_Voiture, NombrePlaces, Id_Marque) VALUES
 (1, 3, 1),
 (2, 3, 2),
 (3, 2, 3),
@@ -150,24 +150,74 @@ INSERT INTO Voiture(Id_Voiture, NombrePaces, Id_Marque) VALUES
 (9, 6, 9);
 
 INSERT INTO Ville(Id_Ville, VilleDepart, VilleArrivee, Id_Voiture) VALUES
-(1, 'Belfort', '', 1),
-(2, 'Belfort', '', 2),
-(3, '', 'Belfort', 3),
-(4, 'Belfort', '', 4),
-(5, '', 'Belfort', 5),
-(6, 'Belfort', '', 6),
-(7, 'Montbéliard²', 'Belfort', 7),
-(8, '', 'Belfort', 8),
-(9, 'Belfort', '', 9);
+(1, 'Belfort', 'Ballon Alsace', 1),
+(2, 'Belfort', 'Strasbourg', 2),
+(3, 'Vesoul', 'Belfort', 3),
+(4, 'Belfort', 'Besançon', 4),
+(5, 'Epinal', 'Belfort', 5),
+(6, 'Belfort', 'Colmar', 6),
+(7, 'Montbéliard', 'Belfort', 7),
+(8, 'Mulhouse', 'Belfort', 8),
+(9, 'Belfort', 'Andelnans', 9);
 
-INSERT INTO Propose(Id_Ville, Id_Habitant)
-((SELECT Id_Ville FROM Ville),(SELECT Id_Habitant FROM Habitant));
+INSERT INTO Appartient(Id_Habitant, Id_Voiture) VALUES
+(1, 1),
+(2, 2),
+(3, 3),
+(4, 4),
+(5, 5),
+(6, 6),
+(7, 7),
+(8, 8),
+(9, 9);
 
+INSERT INTO Voyage(Id_Ville, Id_Arrivee) VALUES
+(1, 1),
+(2, 2),
+(3, 3),
+(4, 4),
+(5, 5),
+(6, 6),
+(7, 7),
+(8, 8),
+(9, 9);
 
-SELECT * FROM Habitant;
-SELECT * FROM Trajet;
-SELECT * FROM CouleurVoiture;
-SELECT * FROM Marque;
-SELECT * FROM Voiture;
-SELECT * FROM Ville;
-SELECT * FROM Propose;
+INSERT INTO Est_de_couleur(Id_Voiture, Id_Couleur) VALUES
+(1, 1),
+(2, 2),
+(3, 3),
+(4, 4),
+(5, 5),
+(6, 6),
+(7, 7),
+(8, 8),
+(9, 9);
+
+INSERT INTO Places_disponibles(Id_Voiture, Id_Arrivee) VALUES
+(1, 1),
+(2, 2),
+(3, 3),
+(4, 4),
+(5, 5),
+(6, 6),
+(7, 7),
+(8, 8),
+(9, 9);
+
+#SELECT * FROM Habitant;
+#SELECT * FROM Trajet;
+#SELECT * FROM CouleurVoiture;
+#SELECT * FROM Marque;
+#SELECT * FROM Voiture;
+#SELECT * FROM Ville;
+#SELECT * FROM Propose;
+#SELECT * FROM Appartient;
+#SELECT * FROM Voyage;
+#SELECT * FROM Est_de_couleur;
+#SELECT * FROM Places_disponibles;
+
+SELECT Age FROM Habitant
+WHERE Age <= '40'
+ORDER BY Age ASC;
+
+SELECT Nom, Prenom FROM Habitant
